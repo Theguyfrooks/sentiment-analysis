@@ -16,7 +16,7 @@ from sklearn.metrics import accuracy_score
 import tkinter as tk
 from tkinter import filedialog, messagebox
 from textblob import TextBlob
-
+import streamlit as st
 # df = pd.read_excel('tweets.xlsx')
 
 
@@ -48,22 +48,12 @@ from textblob import TextBlob
 # print("Neutral Sentiments:", neutral_count)
 
 
-def analyze_sentiments():
-    global df
-    global search_text
-    global result_table
-    
+def analyze_sentiments(df, search_text):
     positive_count = 0
     negative_count = 0
     neutral_count = 0
-    
-    if df is None:
-        messagebox.showerror("Error", "Please select an Excel file first.")
-        return
-    
-    search_text = search_entry.get().lower()
-    
-    for text in df['Text']:
+
+     for text in df['Text']:
         text = text.lower()
         if search_text in text:
             blob = TextBlob(text)
@@ -75,54 +65,17 @@ def analyze_sentiments():
             else:
                 neutral_count += 1
     
-    result_table.delete(0, tk.END)
-    result_table.insert(tk.END, ("Positive Sentiments:", positive_count))
-    result_table.insert(tk.END, ("Negative Sentiments:", negative_count))
-    result_table.insert(tk.END, ("Neutral Sentiments:", neutral_count))
+    st.write("Positive Sentiments:", positive_count)
+    st.write("Negative Sentiments:", negative_count)
+    st.write("Neutral Sentiments:", neutral_count)
 
-def select_excel_file():
-    global df
-    file_path = filedialog.askopenfilename(filetypes=[("Excel files", "*.xlsx;*.xls")])
-    if file_path:
-        try:
-            df = pd.read_excel(file_path)
-            messagebox.showinfo("Success", "Excel file loaded successfully.")
-        except Exception as e:
-            messagebox.showerror("Error", f"Error loading Excel file: {str(e)}")
+# Upload Excel file
+uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx", "xls"])
 
-# Create the main window
-root = tk.Tk()
-root.title("Sentiment Analysis")
-
-# Create a frame for the file selection and search
-top_frame = tk.Frame(root)
-top_frame.pack(pady=10)
-
-# Excel file selection button
-select_button = tk.Button(top_frame, text="Select Excel File", command=select_excel_file)
-select_button.pack(side=tk.LEFT, padx=10)
-
-# Search text entry
-search_label = tk.Label(top_frame, text="Search Text:")
-search_label.pack(side=tk.LEFT)
-search_entry = tk.Entry(top_frame)
-search_entry.pack(side=tk.LEFT, padx=5)
-
-# Analyze button
-analyze_button = tk.Button(top_frame, text="Analyze", command=analyze_sentiments)
-analyze_button.pack(side=tk.LEFT, padx=5)
-
-# Create a frame for displaying results
-result_frame = tk.Frame(root)
-result_frame.pack(pady=10)
-
-# Result table
-result_table = tk.Listbox(result_frame, width=40)
-result_table.pack()
-
-# Initialize global variables
-df = None
-search_text = ""
-
-# Start the GUI main loop
-root.mainloop()
+if uploaded_file is not None:
+    df = pd.read_excel(uploaded_file)
+    st.write(df.head())
+    
+    search_text = st.text_input("Search Text:")
+    if st.button("Analyze"):
+        analyze_sentiments(df, search_text)
