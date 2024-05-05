@@ -22,18 +22,14 @@ def analyze_sentiments(df, search_text):
             else:
                 neutral_count += 1
     
-    st.write("Positive Sentiments:", positive_count)
-    st.write("Negative Sentiments:", negative_count)
-    st.write("Neutral Sentiments:", neutral_count)
-
 
     positive_percentage = (positive_count / total_count) * 100
     negative_percentage = (negative_count / total_count) * 100
     neutral_percentage = (neutral_count / total_count) * 100
     
-    st.write("Positive Sentiments:", positive_count, f"({positive_percentage:.2f}%)")
-    st.write("Negative Sentiments:", negative_count, f"({negative_percentage:.2f}%)")
-    st.write("Neutral Sentiments:", neutral_count, f"({neutral_percentage:.2f}%)")
+    st.write("Positive Sentiments:", positive_count, f" ({positive_percentage:.2f}%)")
+    st.write("Negative Sentiments:", negative_count, f" ({negative_percentage:.2f}%)")
+    st.write("Neutral Sentiments:", neutral_count, f" ({neutral_percentage:.2f}%)")
 
 
 
