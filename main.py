@@ -7,8 +7,7 @@ def analyze_sentiments(df, search_text):
     negative_count = 0
     neutral_count = 0
 
-
-
+    total_count = len(df)
     search_text = search_text.lower()
 
     for text in df['Text']:
