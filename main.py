@@ -38,7 +38,7 @@ uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx", "xls"])
 
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
-    # st.write(df.head())
+    st.write(df.head())
     
     search_text = st.text_input("Search Text:")
     if st.button("Analyze"):
