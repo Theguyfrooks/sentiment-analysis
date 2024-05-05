@@ -4,3 +4,4 @@ nltk==3.6.5
 openpyxl
 matplotlib
 scikit-learn
+textblob
