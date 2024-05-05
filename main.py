@@ -12,6 +12,8 @@ def analyze_sentiments(df, search_text):
 
     for text in df['Text']:
       
+      text = text.lower()
+
         if search_text in text:
             blob = TextBlob(text)
             sentiment_score = blob.sentiment.polarity
