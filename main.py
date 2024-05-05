@@ -9,7 +9,7 @@ def analyze_sentiments(df, search_text):
 
 
 
-    text = text.lower()
+    search_text = search_text.lower()
 
     for text in df['Text']:
       
