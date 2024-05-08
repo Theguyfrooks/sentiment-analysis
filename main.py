@@ -17,7 +17,7 @@ def analyze_sentiments(df, search_text):
     negative_count = 0
     neutral_count = 0
 
-    keywords_filter = ["chor", "gadha", "bakwas", "besharam", "ullo ka pathha", "ghatiya"]
+   # keywords_filter = ["chor", "gadha", "bakwas", "besharam", "ullo ka pathha", "ghatiya"]
 
     total_count = len(df)
     search_text = search_text.lower()
@@ -57,11 +57,21 @@ def analyze_sentiments(df, search_text):
 
 # Upload Excel file
 uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx", "xls"])
+# Upload Excel file
+uploaded_keywords_file = st.file_uploader("Upload keywords file", type=["xlsx", "xls"])
 
-if uploaded_file is not None:
+
+if uploaded_file is not None and  uploaded_keywords_file is not None:
     df = pd.read_excel(uploaded_file)
+    df_keywords = pd.read_excel(uploaded_keywords_file)
     st.write(df.head())
+    st.write(df_keywords.head())
+
+    keyword_column_name = "keywords"
+
     
-    search_text = st.text_input("Search Text:")
-    if st.button("Analyze"):
-        analyze_sentiments(df, search_text)
+   
+    if st.button("Analyze"):    
+         search_text = st.text_input("Search Text:")
+        keywords_filter = df_keywords[keyword_column_name].toList()
+        analyze_sentiments(df, search_text,keywords_filter)
