@@ -41,13 +41,13 @@ def analyze_sentiments(df, search_text):
     # st.write("Total tweets: ", total_count)
     st.write("Positive Sentiments:", positive_count, f" ({positive_percentage:.2f}%)")
     st.write("Negative Sentiments:", negative_count, f" ({negative_percentage:.2f}%)")
-    st.write("Neutrall Sentiments:", neutral_count, f" ({neutral_percentage:.2f}%)")
+    st.write("Neutral Sentiments:", neutral_count, f" ({neutral_percentage:.2f}%)")
 
 
 
 
 # Upload Excel file
-uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx", "xls"])
+uploaded_file = st.file_uploader("Upload Excelll file", type=["xlsx", "xls"])
 
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
