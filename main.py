@@ -63,11 +63,13 @@ uploaded_keywords_file = st.file_uploader("Upload keywords file", type=["xlsx", 
 
 if uploaded_file is not None and  uploaded_keywords_file is not None:
     df = pd.read_excel(uploaded_file)
-    df_keywords = pd.read_excel(uploaded_keywords_file)
     st.write(df.head())
+
+    df_keywords = pd.read_excel(uploaded_keywords_file)
+   
     st.write(df_keywords.head())
 
-    keyword_column_name = "A"
+    keyword_column_name = 'Keywords'
 
     
    
