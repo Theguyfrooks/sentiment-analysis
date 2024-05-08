@@ -2,10 +2,24 @@ import streamlit as st
 import pandas as pd
 from textblob import TextBlob
 
+
+
+def has_keyword(tweet_text, keyword_array):
+    for keyword in keyword_array:
+        if keyword.lower() in tweet_text.lower():
+            return True
+    return False
+
+
+
+
+
 def analyze_sentiments(df, search_text):
     positive_count = 0
     negative_count = 0
     neutral_count = 0
+
+    keywords_filter = ["chor","gadha","bakwas","besharam","ullo ka pathha","ghatiya"]
 
     total_count = len(df)
     search_text = search_text.lower()
@@ -15,6 +29,7 @@ def analyze_sentiments(df, search_text):
         text = text.lower()
 
         if search_text in text:
+
             blob = TextBlob(text)
             sentiment_score = blob.sentiment.polarity
             if sentiment_score > 0:
@@ -22,6 +37,14 @@ def analyze_sentiments(df, search_text):
             elif sentiment_score < 0:
                 negative_count += 1
             else:
+
+        if has_keyword(df["Text"], keywords_filter):
+
+                negative_count += 1
+
+             else:
+
+
                 neutral_count += 1
     
 
