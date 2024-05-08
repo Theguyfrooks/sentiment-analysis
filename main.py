@@ -67,7 +67,7 @@ if uploaded_file is not None and  uploaded_keywords_file is not None:
     st.write(df.head())
     st.write(df_keywords.head())
 
-    keyword_column_name = "keywords"
+    keyword_column_name = "A"
 
     
    
