@@ -41,7 +41,7 @@ def analyze_sentiments(df, search_text):
     # st.write("Total tweets: ", total_count)
     st.write("Positive Sentiments:", positive_count, f" ({positive_percentage:.2f}%)")
     st.write("Negative Sentiments:", negative_count, f" ({negative_percentage:.2f}%)")
-    st.write("Neutral Sentiments:", neutral_count, f" ({neutral_percentage:.2f}%)")
+    st.write("Neutrall Sentiments:", neutral_count, f" ({neutral_percentage:.2f}%)")
 
 
 
