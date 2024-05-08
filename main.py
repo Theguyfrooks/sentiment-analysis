@@ -4,7 +4,11 @@ from textblob import TextBlob
 
 
 
-
+def has_keyword(tweet_text, keyword_array):
+    for keyword in keyword_array:
+        if keyword.lower() in tweet_text.lower():
+            return True
+    return False
 
 
 
