@@ -47,7 +47,7 @@ def analyze_sentiments(df, search_text):
 
 
 # Upload Excel file
-uploaded_file = st.file_uploader("Upload Excelll file", type=["xlsx", "xls"])
+uploaded_file = st.file_uploader("Upload Excel file", type=["xlsx", "xls"])
 
 if uploaded_file is not None:
     df = pd.read_excel(uploaded_file)
