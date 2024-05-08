@@ -12,7 +12,7 @@ def has_keyword(tweet_text, keyword_array):
 
 
 
-def analyze_sentiments(df, search_text):
+def analyze_sentiments(df, search_text,keywords_filter):
     positive_count = 0
     negative_count = 0
     neutral_count = 0
