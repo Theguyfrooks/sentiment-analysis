@@ -75,5 +75,5 @@ if uploaded_file is not None and  uploaded_keywords_file is not None:
    
     if st.button("Analyze"):    
         search_text = st.text_input("Search Text:")
-        keywords_filter = df_keywords[keyword_column_name].toList()
+        keywords_filter = df_keywords[keyword_column_name].values
         analyze_sentiments(df, search_text,keywords_filter)
